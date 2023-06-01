@@ -6,7 +6,7 @@ public class Exam0330 {
   public static void main(String[] args) {
     boolean a = false;
     boolean b = false;
-    boolean r = a && (b = true); 
+    boolean r = a && (b = true); //b = true까지 읽지 않음
     // 계산 순서
     // r = a && (b = true)
     // r = false && (b = true) 
@@ -19,7 +19,7 @@ public class Exam0330 {
 
     a = false;
     b = false;
-    r = a & (b = true);
+    r = a & (b = true); //b = true까지 읽음
     // 계산 순서
     // r = a & (b = true)
     // r = false & (b = true)
