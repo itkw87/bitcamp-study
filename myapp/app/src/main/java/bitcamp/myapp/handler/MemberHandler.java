@@ -1,14 +1,12 @@
 package bitcamp.myapp.handler;
 
 import bitcamp.util.Prompt;
+import bitcamp.myapp.vo.Member;
 
 public class MemberHandler {
   static final int MAX_SIZE = 100;
-  static int[] no = new int[MAX_SIZE];
-  static String[] name = new String[MAX_SIZE];
-  static String[] email = new String[MAX_SIZE];
-  static String[] password = new String[MAX_SIZE];
-  static char[] gender = new char[MAX_SIZE];
+  static Member[] members = new Member[MAX_SIZE];
+
   static int userId = 1;
   static int length = 0;
   
@@ -16,30 +14,20 @@ public class MemberHandler {
   static final char FEMALE = 'W';
 
   public static void inputMember() {
-    name[length] = Prompt.inputString("이름: ");
-    email[length] = Prompt.inputString("이메일: ");
-    password[length] = Prompt.inputString("암호: ");
-    
-    loop: while (true){
-      String menuNo = Prompt.inputString("성별:\n" + 
-      " 1. 남자\n" + 
-      " 2. 여자\n" +
-      "> ");
-    
-      //switch안에서 brake를 쓰면 반복문을 나가는 것이 아니라 switch문을 나가는 것임 => while문에 loop라는 이름의 라벨을 붙여줌 => loop라벨이 붙은 반복문을 빠져나가게함.
-      switch (menuNo) {
-        case "1":
-          gender[length] = MALE;
-          break loop;
-        case "2":
-          gender[length] = FEMALE;
-          break loop;
-        default:
-         System.out.println("무효한 번호입니다.");
-      }
+    if (!available()) {
+      System.out.println("더이상 입력할 수 없습니다!");
+      return; // 함수의 return값(반환타입이 void)이 없을 경우는 return만 사용가능
     }
-    no[length] = userId++;
-    length++;
+
+    Member m = new Member();
+    m.name = Prompt.inputString("이름: ");
+    m.email = Prompt.inputString("이메일: ");
+    m.password = Prompt.inputString("암호: ");
+    m.gender = inputGender((char)0);
+    m.no = userId++;
+
+    // 위에서 만든 Member 인스턴스의 주소를 잃어버리지 않게 레퍼런스 배열의 인덱스에 담는다.
+    members[length++] = m;
   }
 
   public static void printMembers(){
@@ -48,11 +36,107 @@ public class MemberHandler {
     System.out.println("-------------------------------");
 
     for (int i = 0; i < length; i++) {
-      System.out.printf("%d, %s, %s, %c\n", no[i], name[i], email[i], gender[i]);
+      Member m = members[i];
+      System.out.printf("%d, %s, %s, %s\n", 
+      m.no, m.name, m.email, 
+      toGenderString(m.gender));
     }  
   }
 
-  public static boolean available() {
+  public static void viewMember() {
+    String memberNo = Prompt.inputString("번호? ");
+    // 입력 받은 번호를 가지고 배열에서 해당 회원을 찾아야 한다.
+    for (int i = 0; i < length; i++) {
+      Member m = members[i];
+      // java.lang패키지에 있는 클래스(ex.Integer클래스 등)를 사용시에는 import를 작성하지 않아도 예외적으로 혀용됨.
+      if (m.no == Integer.parseInt(memberNo)) {
+        System.out.printf("이름: %s\n", m.name);
+        System.out.printf("이메일: %s\n", m.email);
+        System.out.printf("성별: %s\n", toGenderString(m.gender));
+        return;
+      }
+    }
+    System.out.println("해당 번호의 회원이 없습니다!");
+  }
+
+  public static String toGenderString(char gender) {
+    return gender == 'M' ? "남성" : "여성";
+  }
+
+  
+
+  public static void updateMember() {
+    String memberNo = Prompt.inputString("번호? ");
+    for (int i = 0; i < length; i++) {
+      Member m = members[i];
+      if (m.no == Integer.parseInt(memberNo)) {
+        System.out.printf("이름(%s)? ", m.name);
+        m.name = Prompt.inputString("");
+        System.out.printf("이메일(%s)? ", m.email);
+        m.email = Prompt.inputString("");
+        System.out.printf("새암호? ");
+        m.password = Prompt.inputString("");
+        m.gender = inputGender(m.gender);
+        return;
+      }
+    }
+    System.out.println("해당 번호의 회원이 없습니다!");
+  }
+
+
+  
+
+  private static char inputGender(char gender) {
+    String label;
+    if (gender == 0) {
+      label = "성별?\n";
+    } else {
+      label = String.format("성별(%s)?\n", toGenderString(gender));
+    }
+    loop: while (true) {
+      String menuNo = Prompt.inputString(label +
+          "  1. 남자\n" +
+          "  2. 여자\n" +
+          "> ");
+
+      switch (menuNo) {
+        case "1":
+          return MALE;
+        case "2":
+          return FEMALE;
+        default:
+          System.out.println("무효한 번호입니다.");
+      }
+    }
+  }
+
+  public static void deleteMember() {
+    int memberNo = Prompt.inputInt("번호? ");
+
+    int deletedIndex = indexOf(memberNo);
+    if (deletedIndex == -1) {
+      System.out.println("해당 번호의 회원이 없습니다!");
+      return;
+    }
+
+    for (int i = deletedIndex; i < length - 1; i++) {
+      members[i] = members[i + 1];
+    }
+
+    members[--length] = null;
+  }
+
+  private static int indexOf(int memberNo) {
+    for (int i = 0; i < length; i++) {
+      Member m = members[i];
+      if (m.no == memberNo) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  private static boolean available() {
     return length < MAX_SIZE;
   }
 }

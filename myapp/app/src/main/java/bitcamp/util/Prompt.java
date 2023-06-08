@@ -3,6 +3,7 @@ package bitcamp.util;
 import java.util.Scanner;
 
 public class Prompt {
+
   static Scanner scanner = new Scanner(System.in);
 
   public static String inputString(String title) {
@@ -10,8 +11,12 @@ public class Prompt {
     return scanner.nextLine();
   }
 
+  public static int inputInt(String title) {
+    return Integer.parseInt(inputString(title));
+  }
+
   public static void close() {
     scanner.close();
   }
-}
 
+}
