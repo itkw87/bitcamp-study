@@ -35,7 +35,7 @@ public class App {
 
     scores[length++] = new Score("홍길동", 100, 100, 100);
     scores[length++] = new Score("임꺽정", 90, 90, 90);
-    scores[length++] = new Score("유관순", 80, 800, 80);
+    scores[length++] = new Score("유관순", 80, 800, 80);    
 
     // scores[0].kor = 7000; // 접근 불가!
     scores[0].setKor(70); // setter를 통해서는 값 변경 가능. 단 유효한 값만 가능.

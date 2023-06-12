@@ -16,7 +16,7 @@ import bitcamp.test.step13.vo.Score;
 //     -> createScore()를 score 클래스로 이동
 // 11) 생성자 도입 : 인스턴스 변수를 보다 쉽게 초기화 시키기
 // 12) 클래스를 유지보수 하기 쉽게 별도 소스 파일로 분리
-// 13) 클래스를 유지보수 하기 쉽게 패키지로 분류: impor, public
+// 13) 클래스를 유지보수 하기 쉽게 패키지로 분류: import, public
 
 public class App {
   
