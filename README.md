@@ -1,8 +1,8 @@
 # 네이버 클라우드 7기(2023-04-24 ~ 2023-10-27)
 
-## 구글 미트 접속
+## 웨일즈 화상회의
 
-https://meet.google.com/sya-jckw-ivq
+https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
 
 ## 학습 내용
 
@@ -178,20 +178,47 @@ https://meet.google.com/sya-jckw-ivq
     - 생성자 사용법
     - private/public, setter/getter 사용법
 
-
-### 14일(6/12,금)
+### 14일(6/12,월)
 
 - 자바 프로그래밍
-  - 클래스 사용법(계속)
-    - 스태틱 필드와 스태틱 메서드 사용법
-    - 인스턴스 필드와 인스턴스 메서드 사용법
-    - 패키지 사용법: import, public 접근 제어
-    - GRASP 패턴: Information Expert 패턴 소개 
-    - GoF의 Design Patters: Factory Method 패턴 소개
-    - 생성자 사용법
-    - private/public, setter/getter 사용법
+  - 클래스 사용법(복습)
+  - Eclipse IDE 도구 설정
+    - 다운로드 및 설치, 워크스페이스 설정
+    - 프로젝트 임포트
+    - 소스 코드 편집과 컴파일, 실행하기
+    - git add/commit/push 실행하기
+- Gradle 사용법
+  - 빌드 스크립트 파일과 플러그인, 태스크 관계
+  - `eclispe` 플러그인 사용법
+- 프로젝트 실습
+  - 12. 생성자, 셋터, 겟터 도입하기
 
-    
+### 15일(6/13,화)
+
+- 자바 프로그래밍(com.eomcs.oop.ex03.*)
+  - 클래스 로딩과 스태틱 필드: Method Area 메모리 영역
+  - new 연산자와 인스턴스 필드: Heap 메모리 영역
+  - 메서드와 로컬 변수: JVM Stack 메모리 영역
+- 프로젝트 실습
+  - 13. 게시판 관리 기능 추가
+
+### 16일(6/14,수)
+
+- 프로젝트 실습
+  - 13. 게시판 관리 기능 추가(계속)
+  - 14. 스태틱 필드의 한계 확인
+  - 15. 인스턴스 필드와 인스턴스 메서드, 생성자와 의존 객체 주입
+  
+
+### 17일(6/15,목)
+
+- 자바 프로그래밍(com.eomcs.oop.ex03.*)
+  - Eclipse IDE로 디버깅하는 방법
+- 프로젝트 실습
+  - 16. GRASP 패턴: Information Expert 적용
+  - 17. 인터페이스를 이용한 객체 사용 규칙 정의
+  - 18. 인스턴스 목록 제어 기능을 별도의 클래스로 캡슐화: 재사용성 높임
+
 
 ## 웨일즈 화상회의
 
