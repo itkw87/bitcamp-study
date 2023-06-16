@@ -17,6 +17,27 @@ public class Board {
     this.createdDate = System.currentTimeMillis();
   }
 
+  public Board(int no) {
+    this.no = no;
+    // TODO Auto-generated constructor stub
+  }
+
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+
+    if (this.getClass() != obj.getClass()) {
+      return false;
+    }
+
+    Board b = (Board) obj;
+    if (this.getNo() != b.getNo()) {
+      return false;
+    }
+    return true;
+  }
+
   public int getNo() {
     return no;
   }

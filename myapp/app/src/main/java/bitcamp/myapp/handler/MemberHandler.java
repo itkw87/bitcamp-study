@@ -4,7 +4,7 @@ import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
 
 public class MemberHandler implements Handler {
-  private MemberList list = new MemberList();
+  private ArrayList list = new ArrayList();
   private Prompt prompt;
   private String title;
 
@@ -65,10 +65,10 @@ public class MemberHandler implements Handler {
     System.out.println("번호, 이름, 이메일, 성별");
     System.out.println("---------------------------------------");
 
-    Member[] arr = list.list();
+    Object[] arr = this.list.list();
 
-
-    for (Member m : arr) {
+    for (Object obj : arr) {
+      Member m = (Member) obj;
       System.out.printf("%d, %s, %s, %s\n", m.getNo(), m.getName(), m.getEmail(),
           toGenderString(m.getGender()));
     }
@@ -77,7 +77,7 @@ public class MemberHandler implements Handler {
   private void viewMember() {
     int memberNo = this.prompt.inputInt("번호? ");
 
-    Member m = this.list.get(memberNo);
+    Member m = (Member) this.list.get(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다!");
       return;
@@ -95,7 +95,7 @@ public class MemberHandler implements Handler {
   private void updateMember() {
 
     int memberNo = this.prompt.inputInt("번호? ");
-    Member m = this.list.get(memberNo);
+    Member m = (Member) this.list.get(new Member(memberNo));
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다!");
       return;
@@ -130,8 +130,10 @@ public class MemberHandler implements Handler {
   }
 
   private void deleteMember() {
-    if (!this.list.delete(this.prompt.inputInt("번호? "))) { // ture가 아니라면이 아니라 삭제를 못했을때 라고 생각해야함 안
-                                                           // 그러면 헷갈림
+    // if (!this.list.delete(100)) { 인자값 100 int값은 주소값이 아니라 Object타입의 매개변수로 받을 수가 없음 따라서
+    // Integer타입의 인스턴스로 자동형변환(autoboxing)해서 인자값으로 넘김
+    if (!this.list.delete(new Member(this.prompt.inputInt("번호? ")))) { // ture가 아니라면이 아니라 삭제를 못했을때
+                                                                       // 라고 생각해야함 안 그러면 헷갈림
       System.out.println("해당 번호의 회원이 없습니다!");
     }
   }
