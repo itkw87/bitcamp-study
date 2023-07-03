@@ -1,15 +1,30 @@
 package bitcamp.myapp.handler;
 
+import java.util.List;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.ActionListener;
 import bitcamp.util.BreadcrumbPrompt;
-import bitcamp.util.List;
 
 public abstract class AbstractMemberListener implements ActionListener {
-  protected List list;
 
-  public AbstractMemberListener(List list) {
+  protected List<Member> list;
+
+  public AbstractMemberListener(List<Member> list) {
     this.list = list;
+  }
+
+  protected static String toGenderString(char gender) {
+    return gender == 'M' ? "남성" : "여성";
+  }
+
+  protected Member findBy(int no) {
+    for (int i = 0; i < this.list.size(); i++) {
+      Member m = this.list.get(i);
+      if (m.getNo() == no) {
+        return m;
+      }
+    }
+    return null;
   }
 
   protected char inputGender(char gender, BreadcrumbPrompt prompt) {
@@ -21,7 +36,10 @@ public abstract class AbstractMemberListener implements ActionListener {
     }
 
     while (true) {
-      String menuNo = prompt.inputString(label + "  1. 남자\n" + "  2. 여자\n" + "> ");
+      String menuNo = prompt.inputString(label +
+          "  1. 남자\n" +
+          "  2. 여자\n" +
+          "> ");
 
       switch (menuNo) {
         case "1":
@@ -32,20 +50,6 @@ public abstract class AbstractMemberListener implements ActionListener {
           System.out.println("무효한 번호입니다.");
       }
     }
-  }
-
-  protected static String toGenderString(char gender) {
-    return gender == 'M' ? "남성" : "여성";
-  }
-
-  protected Member findBy(int no) {
-    for (int i = 0; i < this.list.size(); i++) {
-      Member m = (Member) this.list.get(i);
-      if (m.getNo() == no) {
-        return m;
-      }
-    }
-    return null;
   }
 
 }

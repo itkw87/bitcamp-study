@@ -16,6 +16,7 @@ class F {
 
 }
 
+
 public final class Exam0340 {
   public static void main(String[] args) {
     System.out.println(F.v1);

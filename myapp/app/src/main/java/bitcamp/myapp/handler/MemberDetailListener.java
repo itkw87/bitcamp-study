@@ -1,14 +1,14 @@
 package bitcamp.myapp.handler;
 
+import java.util.List;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.BreadcrumbPrompt;
-import bitcamp.util.List;
 
 public class MemberDetailListener extends AbstractMemberListener {
-  public MemberDetailListener(List list) {
+
+  public MemberDetailListener(List<Member> list) {
     super(list);
   }
-
 
   @Override
   public void service(BreadcrumbPrompt prompt) {
@@ -24,5 +24,4 @@ public class MemberDetailListener extends AbstractMemberListener {
     System.out.printf("이메일: %s\n", m.getEmail());
     System.out.printf("성별: %s\n", toGenderString(m.getGender()));
   }
-
 }

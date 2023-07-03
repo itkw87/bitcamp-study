@@ -8,10 +8,11 @@ class E {
   // 초기화 블록의 코드 또한 생성자에 복사된다.
   {
     v1 = 200; // OK!
-    //    v1 = 300; // 컴파일 오류!
+    // v1 = 300; // 컴파일 오류!
   }
 
 }
+
 
 public final class Exam0330 {
   public static void main(String[] args) {

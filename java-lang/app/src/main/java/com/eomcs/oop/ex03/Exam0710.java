@@ -16,8 +16,18 @@ public class Exam0710 {
     //   생성자에 공통으로 들어갈 코드를 작성하면 된다.
     //
     {
-      a = 100; // a 변수 앞에 this가 생략됨
+//      a = 100; // a 변수 앞에 this가 생략됨
       System.out.println("Hello!");
+    }
+    
+    {
+
+      System.out.println("Hello!2");
+    }
+    
+    {
+
+      System.out.println("Hello!3");
     }
 
     // 생성자가 없으면,

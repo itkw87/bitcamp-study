@@ -1,11 +1,12 @@
 package bitcamp.myapp.handler;
 
+import java.util.List;
 import bitcamp.myapp.vo.Board;
 import bitcamp.util.BreadcrumbPrompt;
-import bitcamp.util.List;
 
 public class BoardUpdateListener extends AbstractBoardListener {
-  public BoardUpdateListener(List list) {
+
+  public BoardUpdateListener(List<Board> list) {
     super(list);
   }
 
@@ -28,5 +29,14 @@ public class BoardUpdateListener extends AbstractBoardListener {
     board.setContent(prompt.inputString("내용(%s)? ", board.getContent()));
   }
 }
+
+
+
+
+
+
+
+
+
 
 

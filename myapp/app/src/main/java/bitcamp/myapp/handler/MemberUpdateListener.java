@@ -1,18 +1,19 @@
 package bitcamp.myapp.handler;
 
+import java.util.List;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.BreadcrumbPrompt;
-import bitcamp.util.List;
 
 public class MemberUpdateListener extends AbstractMemberListener {
-  public MemberUpdateListener(List list) {
+
+  public MemberUpdateListener(List<Member> list) {
     super(list);
   }
 
   @Override
   public void service(BreadcrumbPrompt prompt) {
-
     int memberNo = prompt.inputInt("번호? ");
+
     Member m = this.findBy(memberNo);
     if (m == null) {
       System.out.println("해당 번호의 회원이 없습니다!");
@@ -24,4 +25,5 @@ public class MemberUpdateListener extends AbstractMemberListener {
     m.setPassword(prompt.inputString("새암호? "));
     m.setGender(inputGender(m.getGender(), prompt));
   }
+
 }
