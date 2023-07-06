@@ -46,11 +46,11 @@
   },
   {
     "no": 9,
-    "title": "제목2",
-    "content": "내용2",
+    "title": "okok",
+    "content": "nono",
     "writer": "임꺽정",
     "password": "1111",
-    "viewCount": 0,
+    "viewCount": 1,
     "createdDate": 1688023187576
   },
   {
@@ -88,5 +88,14 @@
     "password": "1111",
     "viewCount": 0,
     "createdDate": 1688373450726
+  },
+  {
+    "no": 25,
+    "title": "zzz",
+    "content": "zzzzzz",
+    "writer": "zzz",
+    "password": "1111",
+    "viewCount": 0,
+    "createdDate": 1688622410113
   }
 ]

@@ -15,15 +15,8 @@
   },
   {
     "no": 3,
-    "name": "c",
-    "email": "c@test.com",
-    "password": "1111",
-    "gender": "M"
-  },
-  {
-    "no": 4,
-    "name": "d",
-    "email": "d@test.com",
+    "name": "cc",
+    "email": "cc@test.com",
     "password": "1111",
     "gender": "W"
   },
