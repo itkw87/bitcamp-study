@@ -69,15 +69,8 @@ public class ServerApp {
         case "board/list":
           response.status(ResponseEntity.SUCCESS).result(boardDao.list());
           break;
-        case "member/list":
-          response.status(ResponseEntity.SUCCESS).result(memberDao.list());
-          break;
         case "board/insert":
           boardDao.insert(request.getObject(Board.class));
-          response.status(ResponseEntity.SUCCESS);
-          break;
-        case "member/insert":
-          memberDao.insert(request.getObject(Member.class));
           response.status(ResponseEntity.SUCCESS);
           break;
         case "board/findBy":
@@ -88,28 +81,58 @@ public class ServerApp {
             response.status(ResponseEntity.SUCCESS).result(board);
           }
           break;
-        case "member/findBy":
-          Member member = memberDao.findBy(request.getObject(Integer.class));
-          if (member == null) {
-            response.status(ResponseEntity.FAILURE).result("해당 번호의 게시글이 없습니다!");
-          } else {
-            response.status(ResponseEntity.SUCCESS).result(member);
-          }
-          break;
         case "board/update":
           int value = boardDao.update(request.getObject(Board.class));
-          response.status(ResponseEntity.SUCCESS).result(value);
-          break;
-        case "member/update":
-          value = memberDao.update(request.getObject(Member.class));
           response.status(ResponseEntity.SUCCESS).result(value);
           break;
         case "board/delete":
           value = boardDao.delete(request.getObject(Integer.class));
           response.status(ResponseEntity.SUCCESS).result(value);
           break;
+        case "member/list":
+          response.status(ResponseEntity.SUCCESS).result(memberDao.list());
+          break;
+        case "member/insert":
+          memberDao.insert(request.getObject(Member.class));
+          response.status(ResponseEntity.SUCCESS);
+          break;
+        case "member/findBy":
+          Member member = memberDao.findBy(request.getObject(Integer.class));
+          if (member == null) {
+            response.status(ResponseEntity.FAILURE).result("해당 번호의 회원이 없습니다!");
+          } else {
+            response.status(ResponseEntity.SUCCESS).result(member);
+          }
+          break;
+        case "member/update":
+          value = memberDao.update(request.getObject(Member.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
         case "member/delete":
           value = memberDao.delete(request.getObject(Integer.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+        case "reading/list":
+          response.status(ResponseEntity.SUCCESS).result(readingDao.list());
+          break;
+        case "reading/insert":
+          readingDao.insert(request.getObject(Board.class));
+          response.status(ResponseEntity.SUCCESS);
+          break;
+        case "reading/findBy":
+          board = readingDao.findBy(request.getObject(Integer.class));
+          if (board == null) {
+            response.status(ResponseEntity.FAILURE).result("해당 번호의 게시글이 없습니다!");
+          } else {
+            response.status(ResponseEntity.SUCCESS).result(board);
+          }
+          break;
+        case "reading/update":
+          value = readingDao.update(request.getObject(Board.class));
+          response.status(ResponseEntity.SUCCESS).result(value);
+          break;
+        case "reading/delete":
+          value = readingDao.delete(request.getObject(Integer.class));
           response.status(ResponseEntity.SUCCESS).result(value);
           break;
         default:
