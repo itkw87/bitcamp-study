@@ -1,74 +1,39 @@
 package bitcamp.myapp.vo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Objects;
 
-public class Board implements Serializable, CsvObject, AutoIncrement {
+public class Board implements Serializable {
   private static final long serialVersionUID = 1L;
-
-  public static int boardNo = 1;
 
   private int no;
   private String title;
   private String content;
-  private String writer;
+  private Member writer;
   private String password;
   private int viewCount;
-  private long createdDate;
-
-  public Board() {}
-
-  public Board(int no) {
-    this.no = no;
-  }
-
-  public static Board fromCsv(String csv) {
-    String[] values = csv.split(",");
-
-    Board board = new Board(Integer.parseInt(values[0]));
-    board.setTitle(values[1]);
-    board.setContent(values[2]);
-    board.setWriter(values[3]);
-    board.setPassword(values[4]);
-    board.setViewCount(Integer.parseInt(values[5]));
-    board.setCreatedDate(Long.parseLong(values[6]));
-
-    if (Board.boardNo <= board.getNo()) {
-      Board.boardNo = board.getNo() + 1;
-    }
-
-    return board;
-  }
-
-  @Override
-  public void updateKey() {
-    if (Board.boardNo <= this.no) {
-      Board.boardNo = this.no + 1;
-    }
-  }
+  private Timestamp createdDate;
+  private int category;
+  private List<AttachedFile> attachedFiles;
 
 
   @Override
-  public String toCsvString() {
-    return String.format("%d,%s,%s,%s,%s,%d,%d", this.getNo(), this.getTitle(), this.getContent(),
-        this.getWriter(), this.getPassword(), this.getViewCount(), this.getCreatedDate());
+  public int hashCode() {
+    return Objects.hash(no);
   }
 
+  @Override
   public boolean equals(Object obj) {
-    if (obj == null) {
+    if (this == obj)
+      return true;
+    if (obj == null)
       return false;
-    }
-
-    if (this.getClass() != obj.getClass()) {
+    if (getClass() != obj.getClass())
       return false;
-    }
-
-    Board b = (Board) obj;
-
-    if (this.getNo() != b.getNo()) {
-      return false;
-    }
-
-    return true;
+    Board other = (Board) obj;
+    return no == other.no;
   }
 
   public int getNo() {
@@ -95,11 +60,11 @@ public class Board implements Serializable, CsvObject, AutoIncrement {
     this.content = content;
   }
 
-  public String getWriter() {
+  public Member getWriter() {
     return writer;
   }
 
-  public void setWriter(String writer) {
+  public void setWriter(Member writer) {
     this.writer = writer;
   }
 
@@ -111,11 +76,11 @@ public class Board implements Serializable, CsvObject, AutoIncrement {
     this.viewCount = viewCount;
   }
 
-  public long getCreatedDate() {
+  public Timestamp getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(long createdDate) {
+  public void setCreatedDate(Timestamp createdDate) {
     this.createdDate = createdDate;
   }
 
@@ -127,5 +92,19 @@ public class Board implements Serializable, CsvObject, AutoIncrement {
     this.password = password;
   }
 
+  public int getCategory() {
+    return category;
+  }
 
+  public void setCategory(int category) {
+    this.category = category;
+  }
+
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
 }
